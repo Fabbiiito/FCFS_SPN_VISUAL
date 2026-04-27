@@ -11,12 +11,11 @@ float promEspera = 0;
 float promRetorno = 0;
 // ------------------ ESTRUCTURA ------------------
 
-
 Proceso procesos[100];
 Proceso copia[100];
 int nProcesos=0;
 
-int algoritmo=1; // 1 FCFS, 2 SPN
+int algoritmo=1; // 1 FCFS, 2 SPN barraProceso
 
 // offsets para arrastrar
 int offsetX=0, offsetY=0;
@@ -30,9 +29,9 @@ void cargarArchivo()
     ifstream f("procesos.txt");
     nProcesos=0;
 
-    while(f>>procesos[nProcesos].nombre
-            >>procesos[nProcesos].llegada
-            >>procesos[nProcesos].ejecucion)
+    while(f >> procesos[nProcesos].nombre
+        >> procesos[nProcesos].llegada
+        >> procesos[nProcesos].ejecucion)
     {
         nProcesos++;
     }
@@ -162,9 +161,9 @@ void dibujarTabla(HDC hdc)
     // ---- Filas
     for(int i=0;i<nProcesos;i++)
     {
-        char b1[10],b2[10],b3[10],b4[10],b5[10],b6[10],b7[10];
+        char b1[30],b2[10],b3[10],b4[10],b5[10],b6[10],b7[10];
 
-        wsprintf(b1,"%c",copia[i].nombre);
+        wsprintf(b1,"%s",copia[i].nombre);
         wsprintf(b2,"%d",copia[i].llegada);
         wsprintf(b3,"%d",copia[i].ejecucion);
         wsprintf(b4,"%d",copia[i].inicio);
@@ -277,7 +276,7 @@ case WM_PAINT:
     dibujarTabla(hdc);
 
     EndPaint(hwnd,&ps);
-    return TRUE;
+    return TRUE;wsprintf
 }*/
 case WM_ERASEBKGND:
 {
@@ -294,7 +293,7 @@ case WM_ERASEBKGND:
     wsprintf(txt,"Promedio Retorno: %s",num);
     TextOut(hdc,360,45,txt,lstrlen(txt));
 
-    return TRUE;   // <<<<<< MUY IMPORTANTE
+    return TRUE;
 }case WM_PAINT:
 {
     PAINTSTRUCT ps;

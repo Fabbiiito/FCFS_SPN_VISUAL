@@ -11,7 +11,7 @@
 
 1777252127 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\resource.h
 
-1777254035 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\main.cpp
+1777302990 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\main.cpp
 	<windows.h>
 	<commctrl.h>
 	<fstream>
@@ -19,13 +19,13 @@
 	"proceso.h"
 	"planificador.h"
 
-1777254035 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\gantt.cpp
+1777303505 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\gantt.cpp
 	<windows.h>
 	"resource.h"
 	"proceso.h"
 	"planificador.h"
 
-1777252208 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\proceso.h
+1777301575 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\proceso.h
 
 1777254035 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\planificador.h
 	"proceso.h"

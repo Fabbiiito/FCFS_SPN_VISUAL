@@ -3,7 +3,7 @@
 #pragma once
 
 struct Proceso{
-    char nombre;
+    char nombre[30];   // ← más espacio para cadenas
     int llegada;
     int ejecucion;
     int inicio;
@@ -12,6 +12,4 @@ struct Proceso{
     int retorno;
     bool terminado;
 };
-
-
 #endif // PROCESO_H_INCLUDED

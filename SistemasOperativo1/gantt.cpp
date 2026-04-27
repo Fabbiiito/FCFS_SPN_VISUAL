@@ -4,16 +4,23 @@
 #include "planificador.h"
 int offX=0, offY=0;
 bool drag=false;
-extern POINT last;   // ✅
+extern POINT last;
+int pasoActual = 0;
+int tiempoMax = 0;
 void barraProceso(HDC hdc, int x, int y, int alto, Proceso p, int escala)
 {
+    if(p.inicio >= pasoActual) return;
+
+    int finVisible = p.fin;
+    if(p.fin > pasoActual)
+        finVisible = pasoActual;
+
     int xi = x + p.inicio * escala;
-    int xf = x + p.fin * escala;
+    int xf = x + finVisible * escala;
 
     Rectangle(hdc, xi, y, xf, y + alto);
 
-    char t[2] = { p.nombre, 0 };
-    DrawText(hdc, t, -1,
+    DrawText(hdc, p.nombre, -1,
              new RECT{ xi, y, xf, y + alto },
              DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 }
@@ -48,6 +55,31 @@ INT_PTR CALLBACK GanttProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     switch(msg)
     {
+        case WM_INITDIALOG:
+{
+    tiempoMax = 0;
+    for(int i=0;i<nProcesos;i++)
+        if(copia[i].fin > tiempoMax)
+            tiempoMax = copia[i].fin;
+
+    pasoActual = 0;
+
+    SetTimer(hwnd, 1, 80, NULL); // velocidad (ms)
+    return TRUE;
+}
+case WM_TIMER:
+{
+    if(pasoActual < tiempoMax)
+    {
+        pasoActual++;
+        InvalidateRect(hwnd, NULL, TRUE);
+        Sleep(20); // 👈 aquí el pequeño freno visual
+    }
+    else
+        KillTimer(hwnd,1);
+
+    return TRUE;
+}
         case WM_PAINT:
         {
             PAINTSTRUCT ps;
