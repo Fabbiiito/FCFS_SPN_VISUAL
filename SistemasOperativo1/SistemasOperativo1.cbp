@@ -37,11 +37,16 @@
 			<Add library="kernel32" />
 			<Add library="comctl32" />
 		</Linker>
-		<Unit filename="gantt.cpp" />
+		<UnitsGlob directory="core" wildcard="" recursive="0" id="3381762762" addToProject="1">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</UnitsGlob>
+		<Unit filename="Header.cpp" />
+		<Unit filename="Header.h" />
+		<Unit filename="MenuLateral.cpp" />
+		<Unit filename="MenuLateral.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="manifest.xml" />
-		<Unit filename="planificador.h" />
-		<Unit filename="proceso.h" />
 		<Unit filename="resource.h" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />

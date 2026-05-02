@@ -1,13 +1,17 @@
-#ifndef IDC_STATIC
-#define IDC_STATIC (-1)
-#endif
+#pragma once
 
-#define DLG_MAIN                                100
-#define IDD_MAIN     101
-#define IDC_BTN_FCFS 1001
-#define IDC_BTN_SPN  1002
-#define IDC_FCFS  1001
-#define IDC_SPN   1002
+#define IDD_MAIN_DIALOG 101
 
-#define IDD_GANTT 102
-#define IDC_BTN_GANTT 1003
+// Header / Footer
+#define IDC_HEADER_TEXT 1001
+#define IDC_FOOTER_TEXT 1002
+
+// Menú lateral (hover verde→amarillo)
+#define IDC_LINK_1 1101
+#define IDC_LINK_2  1102
+#define IDC_LINK_3   1103
+
+// Contenido (hover verde→amarillo)
+#define IDC_LINK_STACK_ARRAY   1201
+#define IDC_LINK_STACK_LINKED  1202
+#define IDC_LINK_no_expulsivas     1203

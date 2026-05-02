@@ -1,23 +1,17 @@
 # depslib dependency file v1.0
-1777252425 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\resource.rc
-	<windows.h>
-	<commctrl.h>
-	<richedit.h>
-	"resource.h"
-	"resource.h"
-	<windows.h>
+1777674233 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\resource.rc
 	<windows.h>
 	"resource.h"
 
-1777252127 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\resource.h
+1777680741 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\resource.h
 
-1777302990 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\main.cpp
+1777681269 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\main.cpp
 	<windows.h>
 	<commctrl.h>
-	<fstream>
 	"resource.h"
-	"proceso.h"
-	"planificador.h"
+	"Header.h"
+	"MenuLateral.h"
+	"Contenido.h"
 
 1777303505 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\gantt.cpp
 	<windows.h>
@@ -29,4 +23,37 @@
 
 1777254035 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\planificador.h
 	"proceso.h"
+
+1777588273 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\planificacion\no_expropiativa\fcfs.cpp
+	"VistaFCFS.h"
+
+1777588273 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\planificacion\no_expropiativa\vistafcfs.h
+	<windows.h>
+
+1777588273 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\planificacion\no_expropiativa\vistaspn.cpp
+	"VistaSPN.h"
+
+1777588273 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\planificacion\no_expropiativa\vistaspn.h
+	<windows.h>
+
+1777681003 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\header.cpp
+	"Header.h"
+	"resource.h"
+
+1777669963 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\header.h
+	<windows.h>
+
+1777677137 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\menulateral.cpp
+	"MenuLateral.h"
+	"resource.h"
+
+1777678190 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\menulateral.h
+	<windows.h>
+
+1777680741 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\contenido.h
+	<windows.h>
+
+1777680931 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\contenido.cpp
+	"Contenido.h"
+	"resource.h"
 
