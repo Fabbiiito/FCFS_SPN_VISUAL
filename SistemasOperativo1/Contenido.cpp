@@ -1,6 +1,7 @@
 #include "Contenido.h"
 #include "resource.h"
-
+#include "Global.h"
+#include "MenuLateral.h"
 HWND hBasics;
 HWND hStackArray;
 HWND hStackLinked;
@@ -8,7 +9,8 @@ HWND hStackLinked;
 HWND hNoExpulsivas;
 HWND hFCFS;
 HWND hSPN;
-
+int vistaActual = 0;
+HWND hBtnVolver = NULL;
 void CreateContenido(HWND hDlg)
 {
 
@@ -78,4 +80,32 @@ void CreateContenido(HWND hDlg)
         NULL,
         NULL,
         NULL);
+}
+void OcultarMenuPrincipal()
+{
+    ShowWindow(hBasics, SW_HIDE);
+    ShowWindow(hStackArray, SW_HIDE);
+    ShowWindow(hStackLinked, SW_HIDE);
+
+    ShowWindow(hNoExpulsivas, SW_HIDE);
+    ShowWindow(hFCFS, SW_HIDE);
+    ShowWindow(hSPN, SW_HIDE);
+
+    ShowWindow(h1, SW_HIDE);
+    ShowWindow(h2, SW_HIDE);
+    ShowWindow(h3, SW_HIDE);
+}
+void MostrarMenuPrincipal()
+{
+    ShowWindow(hBasics, SW_SHOW);
+    ShowWindow(hStackArray, SW_SHOW);
+    ShowWindow(hStackLinked, SW_SHOW);
+
+    ShowWindow(hNoExpulsivas, SW_SHOW);
+    ShowWindow(hFCFS, SW_SHOW);
+    ShowWindow(hSPN, SW_SHOW);
+
+    ShowWindow(h1, SW_SHOW);
+    ShowWindow(h2, SW_SHOW);
+    ShowWindow(h3, SW_SHOW);
 }

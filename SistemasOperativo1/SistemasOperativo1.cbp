@@ -41,10 +41,14 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</UnitsGlob>
+		<Unit filename="Contenido.cpp" />
+		<Unit filename="Contenido.h" />
+		<Unit filename="Global.h" />
 		<Unit filename="Header.cpp" />
 		<Unit filename="Header.h" />
 		<Unit filename="MenuLateral.cpp" />
 		<Unit filename="MenuLateral.h" />
+		<Unit filename="VNoExpulsivas.cpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="manifest.xml" />
 		<Unit filename="resource.h" />

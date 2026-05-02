@@ -1,9 +1,9 @@
 #include "MenuLateral.h"
 #include "resource.h"
 
-HWND h1;
-HWND h2;
-HWND h3;
+HWND h1 = NULL;
+HWND h2 = NULL;
+HWND h3 = NULL;
 
 void CreateMenuLateral(HWND hDlg)
 {

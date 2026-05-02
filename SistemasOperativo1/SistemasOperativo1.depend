@@ -5,13 +5,14 @@
 
 1777680741 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\resource.h
 
-1777681269 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\main.cpp
+1777690868 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\main.cpp
 	<windows.h>
 	<commctrl.h>
 	"resource.h"
 	"Header.h"
 	"MenuLateral.h"
 	"Contenido.h"
+	"Global.h"
 
 1777303505 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\gantt.cpp
 	<windows.h>
@@ -36,24 +37,31 @@
 1777588273 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\planificacion\no_expropiativa\vistaspn.h
 	<windows.h>
 
-1777681003 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\header.cpp
+1777690312 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\header.cpp
 	"Header.h"
 	"resource.h"
 
 1777669963 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\header.h
 	<windows.h>
 
-1777677137 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\menulateral.cpp
+1777689024 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\menulateral.cpp
 	"MenuLateral.h"
 	"resource.h"
 
 1777678190 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\menulateral.h
 	<windows.h>
 
-1777680741 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\contenido.h
+1777688969 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\contenido.h
 	<windows.h>
 
-1777680931 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\contenido.cpp
+1777689024 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\contenido.cpp
 	"Contenido.h"
 	"resource.h"
+	"Global.h"
+	"MenuLateral.h"
+
+1777687756 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\vnoexpulsivas.cpp
+
+1777688925 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\global.h
+	<windows.h>
 

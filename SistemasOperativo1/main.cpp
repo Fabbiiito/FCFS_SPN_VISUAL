@@ -4,11 +4,31 @@
 #include "Header.h"
 #include "MenuLateral.h"
 #include "Contenido.h"
-
+#include "Global.h"
 int idHover = 0;
 HWND hSeparador;
 HBRUSH hBrushGreen = CreateSolidBrush(RGB(0,102,51));
 HBRUSH hBrushWhite = (HBRUSH)GetStockObject(WHITE_BRUSH);
+void ActualizarUI(HWND hDlg, int width, int height)
+{
+    if (vistaActual == 1)
+    {
+        ShowWindow(hBtnVolver, SW_SHOW);
+
+        MoveWindow(
+            hBtnVolver,
+            (width / 2) - 50,
+            height - 32,
+            100,
+            25,
+            TRUE
+        );
+    }
+    else
+    {
+        ShowWindow(hBtnVolver, SW_HIDE);
+    }
+}
 
 INT_PTR CALLBACK DialogProc(HWND hDlg, UINT msg, WPARAM wp, LPARAM lp)
 {
@@ -29,6 +49,18 @@ INT_PTR CALLBACK DialogProc(HWND hDlg, UINT msg, WPARAM wp, LPARAM lp)
                 NULL,
                 NULL
             );
+           hBtnVolver = CreateWindow(
+    "BUTTON",
+    "Volver",
+    WS_CHILD,
+    0, 0, 0, 0,
+    hDlg,
+    (HMENU)5000,
+    NULL,
+    NULL
+);
+
+ShowWindow(hBtnVolver, SW_HIDE);
             return TRUE;
 
         case WM_MOUSEMOVE:
@@ -91,17 +123,48 @@ INT_PTR CALLBACK DialogProc(HWND hDlg, UINT msg, WPARAM wp, LPARAM lp)
                 return (INT_PTR)hBrushWhite;
             }
 
-        case WM_COMMAND:
-            {
-                int id = LOWORD(wp);
-                if (id >= 1101 && id <= 1299)
-                {
-                    char txt[128];
-                    GetWindowText((HWND)lp, txt, 128);
-                    MessageBox(hDlg, txt, "Click", MB_OK);
-                }
-                return TRUE;
-            }
+     case WM_COMMAND:
+{
+    int id = LOWORD(wp);
+
+    // 1. Manejo de Links de texto (ID 1101 a 1299)
+    if (id >= 1101 && id <= 1299)
+    {
+        if (id == IDC_LINK_no_expulsivas)
+        {
+            vistaActual = 1;
+            OcultarMenuPrincipal(); // Asegúrate que esta función oculte los otros estáticos
+            SetWindowText(hHeader, "NO EXPULSIVAS");
+            SetWindowText(hFooter, "VOLVER");
+
+            ShowWindow(hBtnVolver, SW_SHOW); // Mostrar el botón volver
+            UpdateWindow(hDlg);
+        }
+        else
+        {
+            char txt[128];
+            GetWindowText((HWND)lp, txt, 128);
+            MessageBox(hDlg, txt, "Click", MB_OK);
+        }
+        return TRUE;
+    }
+
+    // 2. Botón Volver (ID 5000)
+    if (id == 5000)
+    {
+        vistaActual = 0;
+        SetWindowText(hHeader, "SO POLITICAS");
+        SetWindowText(hFooter, "Copyright Fabricio Mayta");
+
+        ShowWindow(hBtnVolver, SW_HIDE); // NO USES DestroyWindow, solo ocúltalo
+        MostrarMenuPrincipal();
+
+        InvalidateRect(hDlg, NULL, TRUE); // Forzar repintado
+        return TRUE;
+    }
+
+    return TRUE;
+}
         case WM_SIZE:
             {
                 int width = LOWORD(lp);
@@ -132,9 +195,8 @@ INT_PTR CALLBACK DialogProc(HWND hDlg, UINT msg, WPARAM wp, LPARAM lp)
                     width,
                     35,
                     TRUE);
-
-                // =========================
-                // LINEA DIVISORA
+            // =========================
+                // LINEA DIVISORA hFooter
                 // =========================
 
                 MoveWindow(
@@ -254,7 +316,14 @@ INT_PTR CALLBACK DialogProc(HWND hDlg, UINT msg, WPARAM wp, LPARAM lp)
                         NULL,
                         RDW_INVALIDATE | RDW_ERASE | RDW_ALLCHILDREN
                     );
-
+MoveWindow(
+    hBtnVolver,
+    (width / 2) - 50,
+    height - 32,   // dentro del footer
+    100,
+    25,
+    TRUE
+);
                 return TRUE;
             }
 
