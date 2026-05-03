@@ -48,7 +48,10 @@
 		<Unit filename="Header.h" />
 		<Unit filename="MenuLateral.cpp" />
 		<Unit filename="MenuLateral.h" />
+		<Unit filename="VFCFS.h" />
 		<Unit filename="VNoExpulsivas.cpp" />
+		<Unit filename="VNoExpulsivas.h" />
+		<Unit filename="Vistas/VFCFS.cpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="manifest.xml" />
 		<Unit filename="resource.h" />

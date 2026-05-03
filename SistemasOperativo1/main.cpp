@@ -5,10 +5,46 @@
 #include "MenuLateral.h"
 #include "Contenido.h"
 #include "Global.h"
+#include "VNoExpulsivas.h"
+#include "VFCFS.h"
+#include <string>
+#include "VExpulsivas.h"
+#include "Datos/ArchivoTXT.h"
+#include "Datos/Procesos.h"
+#include "Algoritmos/RR.h"
+#include "Algoritmos/SRT.h"
+#include "Datos/Procesos.h"
 int idHover = 0;
+int algoritmoActual = 0;
 HWND hSeparador;
 HBRUSH hBrushGreen = CreateSolidBrush(RGB(0,102,51));
 HBRUSH hBrushWhite = (HBRUSH)GetStockObject(WHITE_BRUSH);
+
+void LimpiarPantalla()
+{
+    // OCULTAR TODO EL CONTENIDO
+    OcultarMenuPrincipal();
+    OcultarVNoExpulsivas();
+
+    OcultarVExpulsivas();
+
+    ShowWindow(hBoxArchivo, SW_HIDE);
+    ShowWindow(hBoxTabla, SW_HIDE);
+    ShowWindow(hBoxGantt, SW_HIDE);
+    ShowWindow(hBoxResultados, SW_HIDE);
+
+    ShowWindow(hBtnFCFS, SW_HIDE);
+    ShowWindow(hBtnSPN, SW_HIDE);
+    ShowWindow(hDropZone, SW_HIDE);
+
+
+    // OCULTAR BOTÓN VOLVER
+    ShowWindow(hBtnVolver, SW_HIDE);
+
+    // RESTAURAR HEADER / FOOTER
+    SetWindowText(hHeader, "SO POLITICAS");
+    SetWindowText(hFooter, "Copyright Fabricio Mayta");
+}
 void ActualizarUI(HWND hDlg, int width, int height)
 {
     if (vistaActual == 1)
@@ -35,33 +71,40 @@ INT_PTR CALLBACK DialogProc(HWND hDlg, UINT msg, WPARAM wp, LPARAM lp)
     switch(msg)
     {
         case WM_INITDIALOG:
-            CreateHeader(hDlg);
-            CreateMenuLateral(hDlg);
-            CreateContenido(hDlg);
-            hSeparador = CreateWindowEx(
-                0,
-                "STATIC",
-                "",
-                WS_CHILD | WS_VISIBLE | SS_BLACKRECT,
-                180, 35, 2, 400,
-                hDlg,
-                NULL,
-                NULL,
-                NULL
-            );
-           hBtnVolver = CreateWindow(
-    "BUTTON",
-    "Volver",
-    WS_CHILD,
-    0, 0, 0, 0,
-    hDlg,
-    (HMENU)5000,
-    NULL,
-    NULL
-);
+    CreateHeader(hDlg);
+    CreateMenuLateral(hDlg);
+    CreateContenido(hDlg);
+    CreateVNoExpulsivas(hDlg);
+    CreateVFCFS(hDlg);
+    CreateVExpulsivas(hDlg);
 
-ShowWindow(hBtnVolver, SW_HIDE);
-            return TRUE;
+    DragAcceptFiles(hDlg, TRUE);
+    hSeparador = CreateWindowEx(
+        0,
+        "STATIC",
+        "",
+        WS_CHILD | WS_VISIBLE | SS_BLACKRECT,
+        180, 35, 2, 400,
+        hDlg,
+        NULL,
+        NULL,
+        NULL
+    );
+
+    hBtnVolver = CreateWindow(
+        "BUTTON",
+        "Volver",
+        WS_CHILD,
+        0, 0, 0, 0,
+        hDlg,
+        (HMENU)5000,
+        NULL,
+        NULL
+    );
+
+    ShowWindow(hBtnVolver, SW_HIDE);
+
+    return TRUE;
 
         case WM_MOUSEMOVE:
             {
@@ -91,7 +134,33 @@ ShowWindow(hBtnVolver, SW_HIDE);
                 }
                 return TRUE;
             }
+case WM_DROPFILES:
+{
+    HDROP hDrop = (HDROP)wp;
 
+    char ruta[MAX_PATH];
+    DragQueryFile(hDrop, 0, ruta, MAX_PATH);
+
+    // 🔥 VALIDACIÓN AQUÍ
+
+    std::string path = ruta;
+
+    if (path.substr(path.find_last_of(".") + 1) != "txt")
+    {
+        MessageBox(hDlg, "Solo archivos .txt", "Error", MB_OK);
+        DragFinish(hDrop);
+        return TRUE;
+    }
+
+    // 🔥 SI ES VÁLIDO
+    CargarArchivoTXT(ruta);
+
+    DragFinish(hDrop);
+
+    MessageBox(hDlg, "Archivo cargado correctamente", "OK", MB_OK);
+
+    return TRUE;
+}
         case WM_MOUSELEAVE:
             idHover = 0;
             InvalidateRect(hDlg, NULL, FALSE);
@@ -128,28 +197,25 @@ ShowWindow(hBtnVolver, SW_HIDE);
     int id = LOWORD(wp);
 
     // 1. Manejo de Links de texto (ID 1101 a 1299)
-    if (id >= 1101 && id <= 1299)
-    {
-        if (id == IDC_LINK_no_expulsivas)
-        {
-            vistaActual = 1;
-            OcultarMenuPrincipal(); // Asegúrate que esta función oculte los otros estáticos
-            SetWindowText(hHeader, "NO EXPULSIVAS");
-            SetWindowText(hFooter, "VOLVER");
+   if (id == IDC_LINK_no_expulsivas)
+{
+    vistaActual = 1;
 
-            ShowWindow(hBtnVolver, SW_SHOW); // Mostrar el botón volver
-            UpdateWindow(hDlg);
-        }
-        else
-        {
-            char txt[128];
-            GetWindowText((HWND)lp, txt, 128);
-            MessageBox(hDlg, txt, "Click", MB_OK);
-        }
-        return TRUE;
-    }
+    OcultarMenuPrincipal();
+    ShowWindow(hBoxArchivo, SW_SHOW);
+    SetWindowText(hHeader, "NO EXPULSIVAS");
+    SetWindowText(hFooter, "VOLVER");
+
+    ShowWindow(hBtnVolver, SW_SHOW);
+
+    MostrarVNoExpulsivas();
+
+    UpdateWindow(hDlg);
+}
 
     // 2. Botón Volver (ID 5000)
+
+    /*
     if (id == 5000)
     {
         vistaActual = 0;
@@ -162,6 +228,89 @@ ShowWindow(hBtnVolver, SW_HIDE);
         InvalidateRect(hDlg, NULL, TRUE); // Forzar repintado
         return TRUE;
     }
+*/
+/*
+if (id == 5000)
+{
+    vistaActual = 0;
+
+    SetWindowText(hHeader, "SO POLITICAS");
+    SetWindowText(hFooter, "Copyright Fabricio Mayta");
+
+    ShowWindow(hBtnVolver, SW_HIDE);
+
+    OcultarVNoExpulsivas();
+
+    MostrarMenuPrincipal();
+
+    InvalidateRect(hDlg, NULL, TRUE);
+
+    return TRUE;
+}
+*/if (id == 5000)
+{
+    vistaActual = 0;
+
+    LimpiarPantalla();      // 🔥 borra TODO visual
+
+    MostrarMenuPrincipal(); // 🔵 SOLO menú principal
+
+    return TRUE;
+}
+if (id == 6001) // botón FCFS
+{
+     ShowWindow(hBoxArchivo, SW_SHOW);
+    ShowWindow(hBoxTabla, SW_SHOW);
+    ShowWindow(hBoxGantt, SW_SHOW);
+    ShowWindow(hBoxResultados, SW_SHOW);
+
+    return TRUE;
+}
+if (id == IDC_LINK_expulsivas)
+{
+    vistaActual = 1;
+
+    OcultarMenuPrincipal();
+
+    SetWindowText(hHeader, "EXPULSIVAS");
+    SetWindowText(hFooter, "VOLVER");
+
+    ShowWindow(hBtnVolver, SW_SHOW);
+
+    MostrarVExpulsivas(); // 🔥 ESTA ES LA CLAVE
+
+    UpdateWindow(hDlg);
+}
+if (id == 7002) // RR
+{
+    if (listaProcesos.empty())
+    {
+        MessageBox(hDlg, "Primero carga un archivo TXT", "Error", MB_OK);
+        return TRUE;
+    }
+
+    EjecutarRR();       // 🔥 procesa
+    MostrarFCFS();      // 🔥 muestra panel
+
+    MessageBox(hDlg, "RR procesado correctamente", "OK", MB_OK);
+
+    return TRUE;
+}
+if (id == 7001) // SRT
+{
+    if (listaProcesos.empty())
+    {
+        MessageBox(hDlg, "Primero carga un archivo TXT", "Error", MB_OK);
+        return TRUE;
+    }
+
+    EjecutarSRT();
+    MostrarFCFS();
+
+    MessageBox(hDlg, "SRT procesado correctamente", "OK", MB_OK);
+
+    return TRUE;
+}
 
     return TRUE;
 }
@@ -234,77 +383,54 @@ ShowWindow(hBtnVolver, SW_HIDE);
                     menuWidth - 40,
                     30,
                     TRUE);
+int panelX = menuWidth + 30;
+int categoryX = panelX;
+int itemX = panelX + 25;
+int panelWidth = width - panelX - 20;
 
-                // =========================
-                // CONTENIDO DERECHO
-                // =========================
+// =========================
+// LAYOUT VERTICAL DINÁMICO
+// =========================
 
-                int panelX = menuWidth + 30;
+int y = 90;
 
-                // COLUMNAS
-                int categoryX = panelX;
-                int itemX     = panelX + 25;
+// =========================
+// NO EXPULSIVAS
+// =========================
 
-                int panelWidth = width - panelX - 20;
+MoveWindow(hNoExpulsivas, categoryX, y, panelWidth, 30, TRUE);
+y += 35;
 
-                // =========================
-                // primer bloque
-                // =========================
+MoveWindow(hFCFS, itemX, y, panelWidth, 25, TRUE);
+y += 30;
 
-                MoveWindow(
-                    hNoExpulsivas,
-                    categoryX,
-                    90,
-                    panelWidth,
-                    30,
-                    TRUE);
+MoveWindow(hSPN, itemX, y, panelWidth, 25, TRUE);
+y += 40;
 
-                MoveWindow(
-                    hFCFS,
-                    itemX,
-                    125,
-                    panelWidth,
-                    25,
-                    TRUE);
+// =========================
+// EXPULSIVAS
+// =========================
 
+MoveWindow(hExpulsivas, categoryX, y, panelWidth, 30, TRUE);
+y += 35;
 
-                MoveWindow(
-                    hSPN,
-                    itemX,
-                    150,
-                    panelWidth,
-                    25,
-                    TRUE);
+MoveWindow(hSRT, itemX, y, panelWidth, 25, TRUE);
+y += 30;
 
-                // =========================
-                // segundo bloque
-                // =========================
+MoveWindow(hRR, itemX, y, panelWidth, 25, TRUE);
+y += 40;
 
-                MoveWindow(
-                    hBasics,
-                    categoryX,
-                    220,
-                    panelWidth,
-                    30,
-                    TRUE);
+// =========================
+// OTRO BLOQUE
+// =========================
 
+MoveWindow(hBasics, categoryX, y, panelWidth, 30, TRUE);
+y += 35;
 
-                MoveWindow(
-                    hStackArray,
-                    itemX,
-                    255,
-                    panelWidth,
-                    30,
-                    TRUE);
+MoveWindow(hStackArray, itemX, y, panelWidth, 25, TRUE);
+y += 30;
 
-
-                MoveWindow(
-                    hStackLinked,
-                    itemX,
-                    290,
-                    panelWidth,
-                    30,
-                    TRUE);
+MoveWindow(hStackLinked, itemX, y, panelWidth, 25, TRUE);
 
                     // =========================
                     // REDRAW
@@ -324,6 +450,7 @@ MoveWindow(
     25,
     TRUE
 );
+
                 return TRUE;
             }
 

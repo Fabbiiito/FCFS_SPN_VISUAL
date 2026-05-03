@@ -9,5 +9,10 @@ extern HWND hStackLinked;
 extern HWND hNoExpulsivas;
 extern HWND hFCFS;
 extern HWND hSPN;
+
+extern HWND hExpulsivas;
+extern HWND hSRT;
+extern HWND hRR;
+
 void OcultarMenuPrincipal();
 void MostrarMenuPrincipal();

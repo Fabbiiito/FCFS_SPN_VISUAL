@@ -3,9 +3,9 @@
 	<windows.h>
 	"resource.h"
 
-1777680741 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\resource.h
+1777777161 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\resource.h
 
-1777690868 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\main.cpp
+1777782503 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\main.cpp
 	<windows.h>
 	<commctrl.h>
 	"resource.h"
@@ -13,6 +13,11 @@
 	"MenuLateral.h"
 	"Contenido.h"
 	"Global.h"
+	"VNoExpulsivas.h"
+	"VFCFS.h"
+	<string>
+	"VExpulsivas.h"
+	"Datos/ArchivoTXT.h"
 
 1777303505 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\gantt.cpp
 	<windows.h>
@@ -51,17 +56,66 @@
 1777678190 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\menulateral.h
 	<windows.h>
 
-1777688969 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\contenido.h
+1777778240 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\contenido.h
 	<windows.h>
 
-1777689024 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\contenido.cpp
+1777778240 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\contenido.cpp
 	"Contenido.h"
 	"resource.h"
 	"Global.h"
 	"MenuLateral.h"
 
-1777687756 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\vnoexpulsivas.cpp
+1777740492 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\vnoexpulsivas.cpp
+	"VNoExpulsivas.h"
 
-1777688925 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\global.h
+1777743208 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\global.h
 	<windows.h>
+
+1777740131 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\vnoexpulsivas.h
+	<windows.h>
+
+1777746335 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\vistas\vfcfs.cpp
+	<windows.h>
+
+1777743920 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\vfcfs.h
+	<windows.h>
+
+1777783031 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\vexpulsivas.cpp
+	"VExpulsivas.h"
+
+1777782503 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\vexpulsivas.h
+	<windows.h>
+
+1777781142 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\algoritmos\rr.cpp
+
+1777781090 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\algoritmos\srt.cpp
+
+1777784342 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\datos\archivotxt.cpp
+	"ArchivoTXT.h"
+	"Procesos.h"
+	<fstream>
+	<sstream>
+
+1777781030 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\datos\proceso.cpp
+
+1777781407 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\graficos\gantt.cpp
+
+1777781426 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\graficos\resultados.cpp
+
+1777781389 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\graficos\tabla.cpp
+
+1777781473 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\vistas\vrr.cpp
+
+1777781452 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\vistas\vsrt.cpp
+
+1777782009 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\datos\archivotxt.h
+
+1777784342 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\datos\procesos.h
+	<vector>
+	"Proceso.h"
+
+1777784342 c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\datos\proceso.h
+
+1777784342 source:c:\users\fabri\onedrive\escritorio\v semestre\sistemas operativos\sistemasoperativo1\datos\procesos.cpp
+	"Procesos.h"
 

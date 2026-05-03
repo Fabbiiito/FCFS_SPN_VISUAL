@@ -15,3 +15,6 @@
 #define IDC_LINK_STACK_ARRAY   1201
 #define IDC_LINK_STACK_LINKED  1202
 #define IDC_LINK_no_expulsivas     1203
+
+
+#define IDC_LINK_expulsivas 1204
