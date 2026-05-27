@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/* Fondo oscuro general de la app */
+html, body {
+    background-color: #13171c !important;
+    color: #b0b8c4;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+/* Contenedor Grid Principal */
+.app-container {
+    display: grid;
+    grid-template-columns: 260px 1fr; /* Estado Expandido */
+    width: 100vw;
+    height: 100vh;
+    transition: grid-template-columns 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Cuando el menú se achica */
+.app-container.collapsed {
+    grid-template-columns: 70px 1fr; /* Estado Contraído - MANTIENE LAS 2 COLUMNAS */
+}
+
+/* CONFIGURACIÓN DEL MENÚ LATERAL (SIDEBAR) */
+.sidebar {
+    background-color: #1a1f26 !important;
+    border-right: 1px solid #232a34;
+    display: flex;
+    flex-direction: column;
+    padding: 15px 10px;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Botón Hamburguesa de 3 líneas */
+.toggle-menu {
+    cursor: pointer;
+    padding: 12px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: background 0.2s;
+}
+
+.toggle-menu:hover {
+    background-color: #242b35;
+}
+
+/* Enlaces del Menú */
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    cursor: pointer;
+    color: #b0b8c4;
+    border-radius: 8px;
+    white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease;
+    user-select: none;
+}
+
+.nav-item:hover {
+    background-color: #242b35;
+    color: #ffffff;
+}
+
+/* Botón activo en el menú lateral */
+.nav-item.active {
+    background-color: #242b35;
+    color: #4cd3e6;
+    border-left: 4px solid #4cd3e6;
+    padding-left: 8px;
+}
+
+/* Control estricto de las imágenes */
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+    object-fit: contain;
+    pointer-events: none; /* Hace que el clic pase directo al contenedor padre .nav-item */
+}
+
+/* Ocultar texto al colapsar */
+.app-container.collapsed .nav-text {
+    display: none;
+}
+
+/* CONTENIDO PRINCIPAL (EL RECTÁNGULO CONTENEDOR ELÁSTICO) */
+.main-content {
+    background-color: #13171c;
+    height: 100vh;
+    padding: 30px; 
+    overflow-y: auto;
+}
+
+/* LÓGICA DE INTERCAMBIO DE PANELES (SOLUCIÓN FIX COMPLETA) */
+.page-panel {
+    display: none !important; /* Forzamos ocultarlo si no está activo */
+    width: 100%;
+    height: 100%;
+    background-color: #1a2026; 
+    border: 2px solid #28333f;  
+    border-radius: 12px;
+    padding: 30px;
+    opacity: 0;
+    transition: opacity 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Cuando pasa a activo, forzamos que use flex y se haga visible obligatoriamente */
+.page-panel.active {
+    display: flex !important; 
+    flex-direction: column;
+    border-color: #4cd3e6; 
+    box-shadow: 0 0 15px rgba(76, 211, 230, 0.15);
+    opacity: 1 !important; /* Bloqueamos que AOS lo deje en opacity 0 */
+    transform: none !important; /* Evita que se desfase al achicar el menú */
+    transition: opacity 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}

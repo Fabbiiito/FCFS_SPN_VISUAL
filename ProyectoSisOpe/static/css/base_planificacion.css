@@ -1,0 +1,397 @@
+.planificador-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    height: 100%;
+}
+
+/* 1. Botonera Superior */
+.algo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.algo-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.active-file-display {
+    color: #8a94a6;
+    font-size: 12px;
+    background-color: #13171c;
+    border: 1px solid #28333f;
+    border-radius: 8px;
+    padding: 8px 12px;
+    min-width: 220px;
+}
+
+.btn-select-file {
+    background-color: #1a2026;
+    color: #8a94a6;
+    border: 1px solid #8a94a6;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.btn-select-file:hover {
+    background-color: #8a94a6;
+    color: #13171c;
+}
+
+.speed-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #8a94a6;
+    font-size: 12px;
+}
+
+.speed-control label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#speedRange {
+    width: 180px;
+}
+
+#speedLabel {
+    color: #4cd3e6;
+    font-weight: 600;
+}
+
+.btn-control {
+    background-color: #1a2026;
+    color: #b0b8c4;
+    border: 1px solid #28333f;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.btn-algo:hover {
+    color: #ffffff;
+    border-color: #4cd3e6;
+}
+
+.btn-algo.active {
+    background-color: transparent;
+    color: #4cd3e6;
+    border-color: #4cd3e6;
+    box-shadow: 0 0 10px rgba(76, 211, 230, 0.2);
+}
+
+/* 2. Sección del Gantt */
+.gantt-section {
+    background-color: #1a2026;
+    border: 1px solid #28333f;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.gantt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.gantt-header h3 {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.gantt-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.zoom-text {
+    color: #8a94a6;
+}
+
+/* El contenedor con scroll para el Gantt elástico */
+.gantt-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    background-color: #13171c;
+    border-radius: 6px;
+    padding: 10px;
+    min-height: 60px;
+}
+
+.gantt-timeline {
+    display: flex;
+    gap: 2px;
+    width: max-content;
+}
+
+/* Bloques individuales del Gantt */
+.gantt-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #13171c;
+    font-weight: bold;
+    font-size: 11px;
+    border-radius: 3px;
+    min-height: 35px;
+    transition: width 0.1s ease;
+}
+
+/* 3. Workspace (Grid central) */
+.workspace-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 15px;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.table-section {
+    background-color: #1a2026;
+    border: 1px solid #28333f;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.table-section h3 {
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.table-scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-grow: 1;
+    max-height: 270px;
+    border-radius: 8px;
+    border: 1px solid #28333f;
+    padding-right: 6px;
+    background-color: #13171c;
+}
+
+.table-scroll::-webkit-scrollbar,
+.gantt-wrapper::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.table-scroll::-webkit-scrollbar-track,
+.gantt-wrapper::-webkit-scrollbar-track {
+    background: #13171c;
+    border-radius: 10px;
+}
+
+.table-scroll::-webkit-scrollbar-thumb,
+.gantt-wrapper::-webkit-scrollbar-thumb {
+    background: #4cd3e6;
+    border-radius: 10px;
+    border: 2px solid #13171c;
+}
+
+.table-scroll::-webkit-scrollbar-thumb:hover,
+.gantt-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #40b1ca;
+}
+
+.table-scroll,
+.gantt-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: #4cd3e6 #13171c;
+}
+
+.process-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    text-align: left;
+}
+
+.process-table th {
+    color: #8a94a6;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #232a34;
+    font-weight: 500;
+}
+
+.process-table td {
+    padding: 10px 0;
+    color: #b0b8c4;
+    border-bottom: 1px solid #1f262f;
+}
+
+/* Estados de los procesos en la tabla */
+.status-badge {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+}
+.status-espera { background-color: rgba(241, 196, 15, 0.15); color: #f1c40f; }
+.status-ejecucion { background-color: rgba(46, 204, 113, 0.15); color: #2ecc71; }
+.status-listo { background-color: rgba(52, 152, 219, 0.15); color: #3498db; }
+.status-terminado { background-color: rgba(149, 165, 166, 0.15); color: #95a5a6; }
+
+/* Grid de Métricas */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+}
+
+.metric-card {
+    background-color: #1a2026;
+    border: 1px solid #28333f;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.metric-card h4 {
+    font-size: 12px;
+    color: #8a94a6;
+}
+
+.metric-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.metric-value {
+    font-size: 26px;
+    color: #4cd3e6;
+    font-weight: 700;
+}
+
+.metric-sub {
+    font-size: 10px;
+    color: #566275;
+    letter-spacing: 0.5px;
+}
+
+/* 4. Barra de Reproducción Inferior */
+.playback-bar {
+    background-color: #1a2026;
+    border: 1px solid #28333f;
+    border-radius: 8px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.playback-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-control {
+    background-color: #232a34;
+    border: 1px solid #28333f;
+    color: white;
+    font-size: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.btn-control:hover {
+    background-color: #2e3846;
+    border-color: #4cd3e6;
+}
+
+.system-time-display {
+    font-size: 13px;
+    color: #ffffff;
+    font-weight: 500;
+}
+/* Ajustes para la alineación del header y botones */
+.algo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.algo-selector-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Integración interna del input del Quantum en el botón de RR */
+.btn-rr-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 10px 4px 16px !important;
+}
+
+.rr-quantum-input {
+    max-width: 45px;
+    background-color: #13171c;
+    border: 1px solid #28333f;
+    color: #4cd3e6;
+    font-weight: bold;
+    text-align: center;
+    padding: 4px;
+    border-radius: 4px;
+    outline: none;
+    font-size: 12px;
+}
+
+/* Botón Ejecutar empujado al extremo derecho */
+.btn-ejecutar {
+    background-color: #1a2026;
+    color: #4cd3e6;
+    border: 1px solid #4cd3e6;
+    padding: 8px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 8px rgba(76, 211, 230, 0.1);
+}
+
+.btn-ejecutar:hover {
+    background-color: #4cd3e6;
+    color: #13171c;
+    box-shadow: 0 0 15px rgba(76, 211, 230, 0.4);
+}
+
+/* Quitar flechas por defecto del input number */
+.rr-quantum-input::-webkit-outer-spin-button,
+.rr-quantum-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

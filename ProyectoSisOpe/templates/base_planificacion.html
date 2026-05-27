@@ -1,0 +1,112 @@
+<div class="planificador-container">
+    
+    <header class="algo-header">
+        <div class="algo-selector-group">
+            <button class="btn-algo active" data-algo="FCFS">FCFS</button>
+            
+            <div class="btn-algo btn-rr-container" data-algo="RR">
+                <span class="rr-text">Round Robin (RR)</span>
+                <input type="number" id="quantumInput" class="rr-quantum-input" value="2" min="1" max="99" title="Quantum">
+            </div>
+            
+            <button class="btn-algo" data-algo="SPN">SPN</button>
+            <button class="btn-algo" data-algo="SRT">SRT</button>
+        </div>
+
+        <div class="algo-actions-group">
+            <div id="archivoActualDisplay" class="active-file-display">Archivo activo: Ninguno</div>
+            <button id="btnSeleccionarArchivo" class="btn-select-file">Seleccionar archivo</button>
+            <button id="btnEjecutar" class="btn-ejecutar">EJECUTAR</button>
+        </div>
+        <input type="file" id="planificadorFileInput" accept=".txt,.csv" style="display:none;">
+    </header>
+
+    <section class="gantt-section">
+        <div class="gantt-header">
+            <h3>Línea de Tiempo del Sistema (Gantt compactada)</h3>
+            <div class="gantt-controls">
+                <label for="ganttZoom">Gantt Zoom:</label>
+                <span class="zoom-text">macro</span>
+                <input type="range" id="ganttZoom" min="10" max="50" value="25">
+                <span class="zoom-text">micro</span>
+            </div>
+        </div>
+        <div class="gantt-wrapper">
+            <div class="gantt-timeline" id="ganttTimeline"></div>
+        </div>
+    </section>
+
+    <div class="workspace-grid">
+        <section class="table-section">
+            <h3>Tabla Global de Estados de Procesos</h3>
+            <div class="table-scroll">
+                <table class="process-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>T. llegada</th>
+                            <th>T. ejecución</th>
+                            <th>T. retorno</th>
+                            <th>T. espera</th>
+                            <th>T. inicio</th>
+                            <th>T. final</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaProcesosBody">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="metrics-grid">
+            <div class="metric-card">
+                <h4>Número de Procesos</h4>
+                <div class="metric-content">
+                    <span class="metric-value" id="metricCount">0</span>
+                    <span class="metric-sub">SISTEMA TOTAL</span>
+                </div>
+            </div>
+            <div class="metric-card">
+                <h4>Promedio de Retorno</h4>
+                <div class="metric-content">
+                    <span class="metric-value" id="metricRetorno">0ms</span>
+                    <span class="metric-sub">POR PROCESO</span>
+                </div>
+            </div>
+            <div class="metric-card">
+                <h4>Promedio de Espera</h4>
+                <div class="metric-content">
+                    <span class="metric-value" id="metricEspera">0ms</span>
+                    <span class="metric-sub">POR PROCESO</span>
+                </div>
+            </div>
+            <div class="metric-card">
+                <h4>Uso del CPU</h4>
+                <div class="metric-content">
+                    <span class="metric-value" id="metricCpu">0%</span>
+                    <span class="metric-sub">UTILIZACIÓN</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="playback-bar">
+        <div class="playback-controls">
+            <button class="btn-control" id="btnReset" title="Reiniciar">⏹️</button>
+            <div class="speed-control">
+                <label for="speedRange">Velocidad</label>
+                <input type="range" id="speedRange" min="100" max="1200" value="700">
+                <span id="speedLabel">Normal</span>
+            </div>
+        </div>
+        <div class="system-time-display">
+            Tiempo de Sistema: <span id="systemTime">0</span>s
+        </div>
+    </footer>
+
+</div>
+
+<script type="text/javascript" src="/static/js/planificacion/algoritmos.js"></script>
+<script type="text/javascript" src="/static/js/planificacion/main_planificador.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/base_planificacion.css">

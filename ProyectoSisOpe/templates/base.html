@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulator</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+</head>
+<body>
+
+    <div class="app-container" id="appContainer">
+        
+        <aside class="sidebar">
+            <div class="toggle-menu" id="btnToggle">
+                <img src="/static/images/menu.png" alt="Menú" class="nav-icon">
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-item active" data-target="panel-vista_general">
+                    <img src="/static/images/vista_general.png" alt="Icono" class="nav-icon">
+                    <span class="nav-text">Vista General</span>
+                </div>
+                <div class="nav-item" data-target="panel-planificacion">
+                    <img src="/static/images/planificacion.png" alt="Icono" class="nav-icon">
+                    <span class="nav-text">Planificación de Procesos</span>
+                </div>
+                <div class="nav-item" data-target="panel-memoria">
+                    <img src="/static/images/memoria.png" alt="Icono" class="nav-icon">
+                    <span class="nav-text">Gestión de Memoria</span>
+                </div>
+                <div class="nav-item" data-target="panel-subir">
+                    <img src="/static/images/subir.png" alt="Icono" class="nav-icon">
+                    <span class="nav-text">Subir Archivos</span>
+                </div>
+                <div class="nav-item" data-target="panel-historial">
+                    <img src="/static/images/historial.png" alt="Icono" class="nav-icon">
+                    <span class="nav-text">Historial de Archivos</span>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            
+            <div id="panel-vista_general" class="page-panel active">
+                {% include 'inicio.html' %}
+            </div>
+
+            <div id="panel-planificacion" class="page-panel">
+                {% include 'base_planificacion.html' %}
+            </div>
+
+            <div id="panel-memoria" class="page-panel">
+                {% include 'base_memoria.html' %}
+            </div>
+
+            <div id="panel-subir" class="page-panel">
+            {% include 'procesos_subir.html' %}
+            </div>
+
+            <div id="panel-historial" class="page-panel">
+            {% include 'historial_archivos.html' %}
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="text/javascript" src="/static/js/base.js"></script>
+</body>
+</html>

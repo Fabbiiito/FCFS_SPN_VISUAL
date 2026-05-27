@@ -1,0 +1,150 @@
+<div class="planificador-container">
+    
+    <header class="algo-header">
+        <div class="algo-selector-group">
+            <button id="btnConfiguracion" class="btn-algo active">⚙️ CONFIGURAR MEMORIA</button>
+            <span id="configActualDisplay" class="config-actual-text">Configuración: Ninguna</span>
+        </div>
+
+        <div class="algo-execution-group">
+            <span id="archivoCargadoDisplay" class="archivo-cargado-text">Archivo: Ninguno</span>
+            <button id="btnEjecutar" class="btn-ejecutar">EJECUTAR</button>
+        </div>
+    </header>
+
+    <div id="modalConfig" class="modal-memoria">
+    <div class="modal-content modal-config-avanzado">
+        <h3>Configuración de Gestión de Memoria</h3>
+        <hr class="modal-divider">
+        
+        <div class="modal-section">
+            <label class="section-title">Estrategia de Asignación:</label>
+            <select id="selectAjuste" class="modal-select">
+                <option value="PrimerAjuste">Primer Ajuste</option>
+                <option value="PeorAjuste">Peor Ajuste</option>
+                <option value="MejorAjuste">Mejor Ajuste</option>
+                <option value="BuddySystem">Compañeros (Buddy System)</option>
+            </select>
+        </div>
+
+        <div class="modal-section inline-inputs-group">
+            <div class="input-field-wrapper">
+                <label>RAM total (KB)</label>
+                <input type="number" id="inputRamTotal" class="modal-numeric-input" value="1024" min="64">
+            </div>
+            <div class="input-field-wrapper">
+                <label>SO reservado (KB)</label>
+                <input type="number" id="inputSoReservado" class="modal-numeric-input" value="128" min="0">
+            </div>
+        </div>
+
+        <div class="modal-section toggle-container">
+            <label class="switch-wrapper">
+                <input type="checkbox" id="toggleParticionesFijas">
+                <span class="switch-slider"></span>
+            </label>
+            <span id="toggleLabelText" class="toggle-label-text">Usar particiones fijas (desactivado)</span>
+        </div>
+
+        <div id="subventanaFijas" class="subventana-particiones" style="display: none;">
+            <div class="info-box-fijas">
+                <strong>Particiones fijas:</strong> La memoria libre se dividirá en bloques estáticos predefinidos. Se usa una cola FCFS independiente por partición o global según el ajuste.
+            </div>
+            
+            <div id="listaParticionesDinamicas" class="particiones-dinamicas-lista">
+                </div>
+
+            <button type="button" id="btnAnadirParticion" class="btn-anadir-particion">➕ Añadir partición</button>
+        </div>
+
+        <div class="modal-actions">
+            <button id="btnGuardarConfig" class="btn-ejecutar">CONFIRMAR</button>
+        </div>
+    </div>
+</div>
+
+    <div class="workspace-grid memory-grid-layout">
+        
+        <section class="gantt-section memory-pila-section">
+            <h3>Mapa de Memoria (RAM)</h3>
+            <div class="ram-wrapper">
+                <div class="ram-pila" id="ramPilaContainer">
+                    <div class="ram-block block-so" style="height: 25%;">SISTEMA OPERATIVO (SO)<br>[256K]</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="table-metrics-column">
+            
+            <section class="table-section">
+                <h3>Tabla Global de Asignación</h3>
+                <div class="table-scroll">
+                    <table class="process-table">
+                        <thead>
+                            <tr>
+                                <th>Proceso ID</th>
+                                <th>Tiempo de Ejecución</th>
+                                <th>Dirección de Inicio</th>
+                                <th>Tamaño</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaMemoriaBody">
+                            </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="metrics-grid">
+                <div class="metric-card">
+                    <h4>Cantidad de Procesos</h4>
+                    <div class="metric-content">
+                        <span class="metric-value" id="metricProcesos">0</span>
+                        <span class="metric-sub">ASIGNADOS</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <h4>Uso de Memoria</h4>
+                    <div class="metric-content">
+                        <span class="metric-value" id="metricUsoMemoria">0%</span>
+                        <span class="metric-sub">SO + PROCESOS</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <h4>Fragmentación Externa</h4>
+                    <div class="metric-content">
+                        <span class="metric-value" id="metricFragExterna">0 KB</span>
+                        <span class="metric-sub">TOTAL LIBRE</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <h4>Fragmentación Interna</h4>
+                    <div class="metric-content">
+                        <span class="metric-value" id="metricFragInterna">0 KB</span>
+                        <span class="metric-sub">DESPERDICIADO</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer class="playback-bar">
+        <div class="playback-controls">
+            <button class="btn-control" id="btnReset" title="Reiniciar">⏹️</button>
+            <div class="velocity-control-container">
+                <label for="speedControl" class="speed-label">Velocidad:</label>
+                <span class="speed-text">Lento</span>
+                <input type="range" id="speedControl" min="100" max="1500" step="100" value="600">
+                <span class="speed-text">Rápido</span>
+            </div>
+        </div>
+        <div class="system-time-display">
+            Tiempo de Sistema: <span id="systemTime">0</span>s
+        </div>
+    </footer>
+
+</div>
+
+<script type="text/javascript" src="/static/js/memoria/algoritmos_memoria.js"></script>
+<script type="text/javascript" src="/static/js/memoria/main_memoria.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/base_memoria.css">

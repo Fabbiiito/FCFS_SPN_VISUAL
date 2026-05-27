@@ -1,0 +1,84 @@
+<div class="history-container">
+    <h2>Historial de Archivos Guardados</h2>
+    <p>Lista de archivos de procesos listos para simulación en el sistema.</p>
+
+    <div class="preview-table-container" style="margin-top: 15px;">
+        <table class="files-table">
+            <thead>
+                <tr>
+                    <th>Nombre del Archivo</th>
+                    <th>Fecha de Guardado</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="historialTbody">
+                <tr>
+                    <td colspan="3" style="text-align: center; color: #8a94a6;">Cargando historial...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // Inyectamos una función simple para refrescar la tabla pidiendo los datos a Flask
+    function cargarArchivoAlPlanificador(nombre) {
+        fetch(`/api/archivo?nombre=${encodeURIComponent(nombre)}`)
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success) {
+                    alert(`Error al cargar el archivo: ${data.error || 'Archivo inválido'}`);
+                    return;
+                }
+                let cargadoPlanificador = false;
+                if (typeof cargarArchivoDesdeTexto === 'function') {
+                    cargadoPlanificador = cargarArchivoDesdeTexto(data.texto, data.nombre);
+                    // No redirigimos automáticamente al panel de planificación.
+                    // El archivo se carga en memoria y planificador, pero el usuario
+                    // permanecerá en el historial para seleccionar otros archivos si desea.
+                } else {
+                    alert('No se puede cargar el archivo en el planificador. Recarga la página e inténtalo de nuevo.');
+                }
+
+                if (typeof cargarArchivoMemoriaDesdeTexto === 'function') {
+                    cargarArchivoMemoriaDesdeTexto(data.texto, data.nombre);
+                }
+            })
+            .catch(() => {
+                alert('Error de conexión al cargar el archivo desde el historial.');
+            });
+    }
+
+    function cargarHistorial() {
+        const tbody = document.getElementById('historialTbody');
+        if (!tbody) return;
+
+        fetch('/api/historial')
+            .then(response => response.json())
+            .then(data => {
+                tbody.innerHTML = '';
+                if (data.archivos && data.archivos.length > 0) {
+                    data.archivos.forEach(file => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td><span style="color: #ffffff; font-weight: 500;">📁 ${file.nombre}</span></td>
+                            <td>${file.fecha}</td>
+                            <td><button class="btn-start" style="width:auto; padding: 4px 15px; font-size: 11px;" onclick="cargarArchivoAlPlanificador('${file.nombre.replace(/'/g, "\\'")}')">SELECCIONAR</button></td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                } else {
+                    tbody.innerHTML = `<tr><td colspan="3" style="text-align: center; color: #8a94a6;">No hay archivos guardados aún.</td></tr>`;
+                }
+            })
+            .catch(err => {
+                tbody.innerHTML = `<tr><td colspan="3" style="text-align: center; color: #ff5c5c;">Error al cargar el historial.</td></tr>`;
+            });
+    }
+
+    // Ejecutar al cargar la página
+    document.addEventListener("DOMContentLoaded", cargarHistorial);
+    
+    // Vincular al evento de clic del sidebar para actualizar la lista cuando entres al panel
+    document.querySelector('[data-target="panel-historial"]')?.addEventListener('click', cargarHistorial);
+</script>
