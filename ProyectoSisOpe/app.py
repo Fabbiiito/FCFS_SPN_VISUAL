@@ -26,6 +26,7 @@ def api_guardar():
         return jsonify(success=False, error='Nombre de archivo inválido.'), 400
 
     save_path = os.path.join(UPLOAD_FOLDER, filename)
+    #¿Ya existe ese archivo?
     if os.path.exists(save_path):
         nombre_base, extension = os.path.splitext(filename)
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -35,6 +36,8 @@ def api_guardar():
     archivo.save(save_path)
     return jsonify(success=True, nombre=filename)
 
+#sirve para leer un archivo 
+# que ya está guardado en la carpeta uploads y devolver su contenido al navegador.
 @app.route('/api/archivo')
 def api_archivo():
     nombre = request.args.get('nombre', '')
@@ -53,7 +56,8 @@ def api_archivo():
         return jsonify(success=False, error=f'No se pudo leer el archivo: {str(e)}'), 500
 
     return jsonify(success=True, nombre=archivo_seguro, texto=contenido)
-
+#sirve para obtener la lista
+# de todos los archivos guardados en la carpeta uploads y enviarla al frontend.
 @app.route('/api/historial')
 def api_historial():
     archivos_guardados = []

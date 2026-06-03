@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let tiempoActual = 0;
     let timerSimulacion = null;
     let ejecutando = false;
-    let algoritmoSeleccionado = "FCFS";
+    let algoritmoSeleccionado = "FCFS"; //Algoritmo que se utilizará inicialmente.
     let procesosOriginales = [];
     let mapaColores = {};
     let secuenciaEjecucion = [];
@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const paletaColores = ["#4cd3e6", "#a29bfe", "#ff7675", "#55efc4", "#ffeaa7", "#fd79a8", "#74b9ff"];
 
-    // Elementos del DOM (localizados dentro del panel de planificación para evitar conflictos con otros paneles)
+    // Busca el botón correcto únicamente dentro de la sección de planificación, ignorando por
+    //  completo todo lo demás que haya en la página para no equivocarse.
     const panelPlan = document.getElementById('panel-planificacion');
     const btnReset = (panelPlan && panelPlan.querySelector('#btnReset')) || document.getElementById('btnReset');
     const btnEjecutar = (panelPlan && panelPlan.querySelector('#btnEjecutar')) || document.getElementById('btnEjecutar');
@@ -27,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const ganttTimeline = (panelPlan && panelPlan.querySelector('#ganttTimeline')) || document.getElementById('ganttTimeline');
     const ganttZoom = (panelPlan && panelPlan.querySelector('#ganttZoom')) || document.getElementById('ganttZoom');
     const tablaBody = (panelPlan && panelPlan.querySelector('#tablaProcesosBody')) || document.getElementById('tablaProcesosBody');
+    //Velocidad inicial del simulador (700ms por paso) y archivo activo en "Ninguno" para que el usuario sepa que debe cargar uno.
     let velocidadIntervalo = parseInt(speedRange.value, 10) || 700;
     let archivoActivo = "Ninguno";
 
@@ -41,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function establecerArchivoActivo(nombre) {
-        archivoActivo = nombre || "Ninguno";
+        archivoActivo = nombre || "Ningunoss";
         archivoActualDisplay.textContent = `Archivo activo: ${archivoActivo}`;
     }
 

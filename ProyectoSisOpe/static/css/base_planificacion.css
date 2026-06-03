@@ -1,7 +1,8 @@
+
 .planificador-container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 15px;      /* Espacio entre elementos hijos */
     width: 100%;
     height: 100%;
 }
@@ -9,18 +10,19 @@
 /* 1. Botonera Superior */
 .algo-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between;/* Separa elementos a los extremos */
     align-items: center;
-    gap: 12px;
+    gap: 12px; /* Espacio entre elementos */
 }
-
+/* BLOQUE IZQUIERDO DE CONTROLES SUPERIORES */
 .algo-actions-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    display: flex; /* Flexbox horizontal */
+    align-items: center; /* Centrado vertical */
+    gap: 10px; /* Separación entre controles */
+    flex-wrap: wrap; /* Permite salto de línea */
 }
 
+/* Muestra el nombre del archivo cargado */
 .active-file-display {
     color: #8a94a6;
     font-size: 12px;
@@ -30,7 +32,7 @@
     padding: 8px 12px;
     min-width: 220px;
 }
-
+/* Botón Seleccionar Archivo */
 .btn-select-file {
     background-color: #1a2026;
     color: #8a94a6;
@@ -41,12 +43,12 @@
     font-size: 13px;
     transition: all 0.2s ease;
 }
-
+/* EFECTO AL PASAR EL MOUSE SOBRE "SELECCIONAR ARCHIVO" */
 .btn-select-file:hover {
     background-color: #8a94a6;
     color: #13171c;
 }
-
+/* BLOQUE DE CONTROL DE VELOCIDAD */
 .speed-control {
     display: flex;
     align-items: center;
@@ -55,21 +57,23 @@
     font-size: 12px;
 }
 
+/* TEXTO "VELOCIDAD" */
 .speed-control label {
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
-
+/* deslizar DE VELOCIDAD */
 #speedRange {
     width: 180px;
 }
 
+/* TEXTO QUE MUESTRA EL VALOR ACTUAL DE VELOCIDAD */
 #speedLabel {
     color: #4cd3e6;
     font-weight: 600;
 }
-
+/* ESTILO BASE DE TODOS LOS BOTONES DE ALGORITMOS */
 .btn-control {
     background-color: #1a2026;
     color: #b0b8c4;
@@ -80,12 +84,12 @@
     font-size: 13px;
     transition: all 0.2s ease;
 }
-
+/* EFECTO HOVER DE LOS BOTONES FCFS, SJF, , RR */
 .btn-algo:hover {
     color: #ffffff;
     border-color: #4cd3e6;
 }
-
+/* ALGORITMO ACTUALMENTE SELECCIONADO */
 .btn-algo.active {
     background-color: transparent;
     color: #4cd3e6;
@@ -94,37 +98,39 @@
 }
 
 /* 2. Sección del Gantt */
+/* CONTENEDOR COMPLETO DE LA SECCIÓN DEL DIAGRAMA DE GANTT */
 .gantt-section {
     background-color: #1a2026;
     border: 1px solid #28333f;
     border-radius: 8px;
     padding: 15px;
 }
-
+/* CABECERA DEL GANTT (TÍTULO + CONTROLES DE ZOOM) */
 .gantt-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
 }
-
+/* TÍTULO "DIAGRAMA DE GANTT" */
 .gantt-header h3 {
     font-size: 14px;
     color: #ffffff;
 }
-
+/* CONTENEDOR DE LOS CONTROLES DEL GANTT (ZOOM, ESCALA, ETC.) */
 .gantt-controls {
     display: flex;
     align-items: center;
     gap: 8px;
     font-size: 12px;
 }
-
+/* TEXTO INFORMATIVO DEL ZOOM */
 .zoom-text {
     color: #8a94a6;
 }
 
 /* El contenedor con scroll para el Gantt elástico */
+/* ÁREA CON SCROLL DONDE SE DIBUJA EL GANTT */
 .gantt-wrapper {
     width: 100%;
     overflow-x: auto;
@@ -133,7 +139,7 @@
     padding: 10px;
     min-height: 60px;
 }
-
+/* LÍNEA DE TIEMPO QUE CONTIENE TODOS LOS BLOQUES DEL GANTT */
 .gantt-timeline {
     display: flex;
     gap: 2px;
@@ -141,6 +147,7 @@
 }
 
 /* Bloques individuales del Gantt */
+/* BLOQUES INDIVIDUALES DE CADA PROCESO EN EL GANTT */
 .gantt-block {
     display: flex;
     flex-direction: column;
@@ -155,6 +162,7 @@
 }
 
 /* 3. Workspace (Grid central) */
+/* CONTENEDOR CENTRAL (TABLA DE PROCESOS + MÉTRICAS) */
 .workspace-grid {
     display: grid;
     grid-template-columns: 1.6fr 1fr;
@@ -162,7 +170,7 @@
     flex-grow: 1;
     min-height: 0;
 }
-
+/* PANEL DE LA TABLA DE PROCESOS */
 .table-section {
     background-color: #1a2026;
     border: 1px solid #28333f;
@@ -171,13 +179,14 @@
     display: flex;
     flex-direction: column;
 }
-
+/* TÍTULO DE LA TABLA DE PROCESOS */
 .table-section h3 {
     font-size: 14px;
     color: #ffffff;
     margin-bottom: 10px;
 }
 
+/* ÁREA CON SCROLL DE LA TABLA */
 .table-scroll {
     overflow-y: auto;
     overflow-x: hidden;
@@ -186,53 +195,46 @@
     border-radius: 8px;
     border: 1px solid #28333f;
     padding-right: 6px;
-    background-color: #13171c;
 }
-
-.table-scroll::-webkit-scrollbar,
-.gantt-wrapper::-webkit-scrollbar {
+/* BARRA DE DESPLAZAMIENTO DE LA TABLA */
+.table-scroll::-webkit-scrollbar {
     width: 10px;
-    height: 10px;
 }
-
-.table-scroll::-webkit-scrollbar-track,
-.gantt-wrapper::-webkit-scrollbar-track {
+/* FONDO DE LA BARRA DE DESPLAZAMIENTO */
+.table-scroll::-webkit-scrollbar-track {
     background: #13171c;
     border-radius: 10px;
 }
-
-.table-scroll::-webkit-scrollbar-thumb,
-.gantt-wrapper::-webkit-scrollbar-thumb {
+/* CONTROL DESLIZANTE DEL SCROLL */
+.table-scroll::-webkit-scrollbar-thumb {
     background: #4cd3e6;
     border-radius: 10px;
     border: 2px solid #13171c;
 }
-
-.table-scroll::-webkit-scrollbar-thumb:hover,
-.gantt-wrapper::-webkit-scrollbar-thumb:hover {
+/* EFECTO AL PASAR EL MOUSE SOBRE EL SCROLL */
+.table-scroll::-webkit-scrollbar-thumb:hover {
     background: #40b1ca;
 }
-
-.table-scroll,
-.gantt-wrapper {
+/* SCROLL PERSONALIZADO  */
+.table-scroll {
     scrollbar-width: thin;
     scrollbar-color: #4cd3e6 #13171c;
 }
-
+/* TABLA PRINCIPAL DE PROCESOS */
 .process-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 13px;
     text-align: left;
 }
-
+/* ENCABEZADOS DE LA TABLA */
 .process-table th {
     color: #8a94a6;
     padding-bottom: 8px;
     border-bottom: 1px solid #232a34;
     font-weight: 500;
 }
-
+/* CELDAS DE DATOS DE LA TABLA */
 .process-table td {
     padding: 10px 0;
     color: #b0b8c4;
@@ -240,25 +242,27 @@
 }
 
 /* Estados de los procesos en la tabla */
+/* ETIQUETAS DE ESTADO DE LOS PROCESOS */
 .status-badge {
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 11px;
     font-weight: bold;
 }
-.status-espera { background-color: rgba(241, 196, 15, 0.15); color: #f1c40f; }
-.status-ejecucion { background-color: rgba(46, 204, 113, 0.15); color: #2ecc71; }
-.status-listo { background-color: rgba(52, 152, 219, 0.15); color: #3498db; }
-.status-terminado { background-color: rgba(149, 165, 166, 0.15); color: #95a5a6; }
+.status-espera { background-color: rgba(241, 196, 15, 0.15); color: #f1c40f; } /* ESTADO DEL PROCESO: ESPERANDO TURNO DE CPU */
+.status-ejecucion { background-color: rgba(46, 204, 113, 0.15); color: #2ecc71; }/* ESTADO DEL PROCESO: EJECUTÁNDOSE ACTUALMENTE */
+.status-listo { background-color: rgba(52, 152, 219, 0.15); color: #3498db; }/* ESTADO DEL PROCESO: LISTO PARA EJECUTARSE */
+.status-terminado { background-color: rgba(149, 165, 166, 0.15); color: #95a5a6; }/* ESTADO DEL PROCESO: FINALIZADO */
 
 /* Grid de Métricas */
+/* CONTENEDOR DE TODAS LAS TARJETAS DE MÉTRICAS */
 .metrics-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 12px;
 }
-
+/* TARJETA INDIVIDUAL DE UNA MÉTRICA */
 .metric-card {
     background-color: #1a2026;
     border: 1px solid #28333f;
@@ -268,24 +272,24 @@
     flex-direction: column;
     justify-content: space-between;
 }
-
+/* TÍTULO DE LA MÉTRICA (CPU, ESPERA, RETORNO, ETC.) */
 .metric-card h4 {
     font-size: 12px;
     color: #8a94a6;
 }
-
+/* CONTENEDOR INTERNO DEL VALOR Y DESCRIPCIÓN */
 .metric-content {
     display: flex;
     flex-direction: column;
     margin-top: 10px;
 }
-
+/* NÚMERO PRINCIPAL DE LA MÉTRICA */
 .metric-value {
     font-size: 26px;
     color: #4cd3e6;
     font-weight: 700;
 }
-
+/* TEXTO SECUNDARIO O DESCRIPCIÓN DE LA MÉTRICA */
 .metric-sub {
     font-size: 10px;
     color: #566275;
@@ -293,6 +297,7 @@
 }
 
 /* 4. Barra de Reproducción Inferior */
+/* BARRA INFERIOR DE CONTROL DE LA SIMULACIÓN */
 .playback-bar {
     background-color: #1a2026;
     border: 1px solid #28333f;
@@ -302,12 +307,12 @@
     justify-content: space-between;
     align-items: center;
 }
-
+/* CONTENEDOR DE BOTONES PLAY, PAUSA, REINICIAR, ETC. */
 .playback-controls {
     display: flex;
     gap: 10px;
 }
-
+/* BOTONES CIRCULARES DE LA BARRA DE REPRODUCCIÓN */
 .btn-control {
     background-color: #232a34;
     border: 1px solid #28333f;
@@ -322,25 +327,26 @@
     justify-content: center;
     transition: background 0.2s;
 }
-
+/* EFECTO AL PASAR EL MOUSE SOBRE LOS BOTONES DE REPRODUCCIÓN */
 .btn-control:hover {
     background-color: #2e3846;
     border-color: #4cd3e6;
 }
-
+/* RELOJ O TIEMPO ACTUAL DE LA SIMULACIÓN */
 .system-time-display {
     font-size: 13px;
     color: #ffffff;
     font-weight: 500;
 }
 /* Ajustes para la alineación del header y botones */
+/* AJUSTE GENERAL DE LA BARRA SUPERIOR */
 .algo-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
 }
-
+/* CONTENEDOR DE LOS BOTONES DE ALGORITMOS */
 .algo-selector-group {
     display: flex;
     gap: 10px;
@@ -348,13 +354,14 @@
 }
 
 /* Integración interna del input del Quantum en el botón de RR */
+/* CONTENEDOR DEL BOTÓN ROUND ROBIN Y SU QUANTUM */
 .btn-rr-container {
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 4px 10px 4px 16px !important;
 }
-
+/* CAMPO DONDE EL USUARIO INGRESA EL QUANTUM */
 .rr-quantum-input {
     max-width: 45px;
     background-color: #13171c;
@@ -369,6 +376,7 @@
 }
 
 /* Botón Ejecutar empujado al extremo derecho */
+/* BOTÓN PRINCIPAL PARA EJECUTAR LA SIMULACIÓN */
 .btn-ejecutar {
     background-color: #1a2026;
     color: #4cd3e6;
@@ -382,13 +390,13 @@
     transition: all 0.2s ease;
     box-shadow: 0 0 8px rgba(76, 211, 230, 0.1);
 }
-
+/* EFECTO HOVER DEL BOTÓN EJECUTAR */
 .btn-ejecutar:hover {
     background-color: #4cd3e6;
     color: #13171c;
     box-shadow: 0 0 15px rgba(76, 211, 230, 0.4);
 }
-
+/* ELIMINA LAS FLECHAS DEL INPUT NUMBER DEL QUANTUM */
 /* Quitar flechas por defecto del input number */
 .rr-quantum-input::-webkit-outer-spin-button,
 .rr-quantum-input::-webkit-inner-spin-button {

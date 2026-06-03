@@ -1,9 +1,9 @@
 .welcome-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 10px;
+    justify-content: center;/* Centra verticalmente el contenido */
+    align-items: flex-start;/* Alinea el contenido hacia la izquierda */
+    gap: 10px;/* Espacio entre el título y el párrafo */
     width: 100%;
     height: auto;
 }
@@ -17,21 +17,29 @@
 .welcome-container p {
     font-size: 16px;
     color: #b0b8c4;
-    line-height: 1.5;
+    line-height: 1.5; /* Espaciado entre líneas */
     max-width: 600px;
 }
+
+
+/* ==========================================================
+   CONTENEDOR DE SUBIDA DE ARCHIVOS
+   ========================================================== */
 .upload-container {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 15px; /* Espacio entre elementos */
 }
 
+/* ==========================================================
+   ZONA PARA ARRASTRAR O HACER CLIC EN ARCHIVOS
+   ========================================================== */
 .drop-zone {
-    width: 100%;
+    width: 100%;/* Ocupa todo el ancho disponible */
     height: 150px;
-    border: 2px dashed #28333f;
-    border-radius: 12px;
+    border: 2px dashed #28333f;/* Borde punteado */
+    border-radius: 12px;/* Esquinas redondeadas */
     background-color: #1a2026;
     display: flex;
     align-items: center;
@@ -39,28 +47,38 @@
     cursor: pointer;
     transition: all 0.2s ease;
 }
-
+/*
+   Se activa cuando:
+   - El mouse pasa encima
+   - Se arrastra un archivo sobre la zona
+*/
 .drop-zone:hover, .drop-zone-active {
     border-color: #4cd3e6;
     background-color: #232a34;
     box-shadow: 0 0 10px rgba(76, 211, 230, 0.1);
 }
 
+/* Texto mostrado dentro de la zona de carga */
 .drop-zone-text {
     color: #8a94a6;
     font-size: 14px;
     pointer-events: none;
 }
 
+/* ==========================================================
+   CONTENEDOR DE LA TABLA DE VISTA PREVIA
+   ========================================================== */
 .preview-table-container {
+     /* Fondo oscuro */
     background-color: #1a2026;
-    border: 1px solid #28333f;
+    border: 1px solid #28333f; /* Borde alrededor del contenedor */
     border-radius: 12px;
-    padding: 20px;
+    padding: 20px; /* Espacio interno */
 }
 
+/* Título de la tabla */
 .preview-table-container h3 {
     color: #ffffff;
     font-size: 16px;
-    margin-bottom: 15px;
+    margin-bottom: 15px;    /* Separación inferior respecto a la tabla */
 }

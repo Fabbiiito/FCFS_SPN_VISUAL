@@ -15,11 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         dropZone.classList.add('drop-zone-active');
     });
-
+    //recorre cada elemento.
     ['dragleave', 'drop'].forEach(eventName => {
         dropZone.addEventListener(eventName, () => dropZone.classList.remove('drop-zone-active'));
     });
-
+    //Se ejecuta cuando el usuario suelta un archivo.
     dropZone.addEventListener('drop', (e) => {
         e.preventDefault();
         const files = e.dataTransfer.files;
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Evento cuando seleccionan desde el explorador normal
+    // Se ejecuta cuando el usuario selecciona un archivo.
     fileInput.addEventListener('change', (e) => {
         if (e.target.files.length > 0) {
             currentFile = e.target.files[0];
@@ -39,16 +39,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Función principal para leer y parsear el archivo
     function procesarArchivo(file) {
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
+        const reader = new FileReader();//Crear lector de archivos
+        
+        reader.onload = function(e) {//Cuando termine de leer
             const contenido = e.target.result;
             const lineas = contenido.split('\n');
             
             // Limpiamos la tabla anterior
             previewTbody.innerHTML = '';
             let filasValidas = 0;
-
+            //Recorrer cada línea
             lineas.forEach(linea => {
                 // Limpiar espacios vacíos y separar por comas, punto y coma, o pestañas
                 const datos = linea.trim().split(/[\s,;]+/);
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 previewContainer.style.display = 'block';
                 uploadStatus.textContent = `Archivo listo: ${file.name}`;
             } else {
-                alert('Mano, el archivo no tiene el formato correcto de 4 columnas (Nombre Llegada Ejecucion Memoria).');
+                alert('el archivo no tiene el formato correcto de 4 columnas (Nombre Llegada Ejecucion Memoria).');
                 previewContainer.style.display = 'none';
                 uploadStatus.textContent = '';
             }

@@ -1,36 +1,38 @@
+/* ==========QUITAR ESPACIOS Y CONFIGURAR TODO========== */
+/* Selecciona TODOS los elementos HTML */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Ubuntu', sans-serif;/* Fuente principal para toda la aplicación */
 }
 
-/* Fondo oscuro general de la app */
+/* ------ FONDO Y TAMAÑO GENERAL DE LA PÁGINA ------- */
 html, body {
     background-color: #13171c !important;
-    color: #b0b8c4;
+    color: #b0b8c4;  /* Color general del texto */
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
+    overflow: hidden; /* Oculta cualquier scroll general */
 }
 
-/* Contenedor Grid Principal */
+/* ------------------- CONTENEDOR PRINCIPAL DE LA APP/----------- */
 .app-container {
-    display: grid;
-    grid-template-columns: 260px 1fr; /* Estado Expandido */
+    display: grid; /* Divide pantalla en columnas */
+    grid-template-columns: 260px 1fr; /* Sidebar + contenido */
     width: 100vw;
     height: 100vh;
     transition: grid-template-columns 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Cuando el menú se achica */
+/* -------------------- Cuando el menú se achica ------------*/
 .app-container.collapsed {
-    grid-template-columns: 70px 1fr; /* Estado Contraído - MANTIENE LAS 2 COLUMNAS */
+    grid-template-columns: 70px 1fr; /* Sidebar pequeño */
 }
 
 /* CONFIGURACIÓN DEL MENÚ LATERAL (SIDEBAR) */
 .sidebar {
-    background-color: #1a1f26 !important;
+    background-color: #1a1f26 !important;  /* Fondo sidebar */
     border-right: 1px solid #232a34;
     display: flex;
     flex-direction: column;
@@ -39,7 +41,7 @@ html, body {
     overflow: hidden;
 }
 
-/* Botón Hamburguesa de 3 líneas */
+/* Botón  de 3 líneas */
 .toggle-menu {
     cursor: pointer;
     padding: 12px;
@@ -52,7 +54,7 @@ html, body {
     margin-bottom: 20px;
     transition: background 0.2s;
 }
-
+/* Cuando el mouse pasa encima */
 .toggle-menu:hover {
     background-color: #242b35;
 }
@@ -61,22 +63,23 @@ html, body {
 .nav-menu {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 8px; /* Separación entre opciones */
 }
-
+/* ================CADA OPCIÓN DEL MENu================ */
 .nav-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 12px;
-    cursor: pointer;
-    color: #b0b8c4;
+    display: flex;    /* Icono y texto en fila */
+    align-items: center;/* Centrado vertical */
+    gap: 15px;/* Espacio entre icono y texto */
+    padding: 12px;/* Espaciado interno */
+    cursor: pointer; /* Cursor de mano */
+    color: #b0b8c4;/* Color normal */
     border-radius: 8px;
     white-space: nowrap;
     transition: background 0.2s ease, color 0.2s ease;
     user-select: none;
 }
 
+/* Hover sobre una opción */
 .nav-item:hover {
     background-color: #242b35;
     color: #ffffff;
@@ -84,16 +87,17 @@ html, body {
 
 /* Botón activo en el menú lateral */
 .nav-item.active {
-    background-color: #242b35;
-    color: #4cd3e6;
-    border-left: 4px solid #4cd3e6;
+    background-color: #242b35;/* Fondo destacado */
+    color: #4cd3e6;   /* Texto celeste */
+    border-left: 4px solid #4cd3e6; /* Línea izquierda indicadora */
     padding-left: 8px;
 }
 
-/* Control estricto de las imágenes */
+/* ICONOS DEL MENÚ */
 .nav-icon {
     width: 24px;
     height: 24px;
+     /* Impide encogerse */
     min-width: 24px;
     min-height: 24px;
     object-fit: contain;
@@ -113,7 +117,8 @@ html, body {
     overflow-y: auto;
 }
 
-/* LÓGICA DE INTERCAMBIO DE PANELES (SOLUCIÓN FIX COMPLETA) */
+/* tODOS LOS PANELES DE LAS PÁGINAS (Inicio, Usuarios, etc.)
+   COMIENZAN OCULTOS HASTA QUE SEAN ACTIVADOS */
 .page-panel {
     display: none !important; /* Forzamos ocultarlo si no está activo */
     width: 100%;
@@ -126,13 +131,23 @@ html, body {
     transition: opacity 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Cuando pasa a activo, forzamos que use flex y se haga visible obligatoriamente */
+/* Cuando un panel recibe la clase active, deja de estar oculto */
 .page-panel.active {
-    display: flex !important; 
+/* Lo muestra en pantalla y activa Flexbox */
+    display: flex !important;
+    /* Organiza el contenido de arriba hacia abajo */
     flex-direction: column;
-    border-color: #4cd3e6; 
+    /* Cambia el borde gris por uno celeste para resaltarlo */
+    border-color: #4cd3e6;
+    /* Agrega un brillo suave alrededor del panel */
     box-shadow: 0 0 15px rgba(76, 211, 230, 0.15);
-    opacity: 1 !important; /* Bloqueamos que AOS lo deje en opacity 0 */
-    transform: none !important; /* Evita que se desfase al achicar el menú */
-    transition: opacity 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    /* Lo vuelve completamente visible */
+    opacity: 1 !important;
+    /* Evita movimientos o desplazamientos no deseados */
+    transform: none !important;
+
+    /* Anima suavemente la aparición, borde y sombra */
+    transition: opacity 0.4s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
 }
